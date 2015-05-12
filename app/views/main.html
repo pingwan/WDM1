@@ -1,25 +1,38 @@
 <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-2 col-sm-2">
+        <div class="col-md-3 col-sm-3">
           <h3>Filter</h3>
         <form>
           <div class="form-group">
-            <label for="exampleInputEmail1">Title</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter title">
+            <label>Title</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter keywords">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Year</label>
+            <label>Year</label>
             <div class="radio">
-              <label><input type="radio" name="optradio" checked="checked">Before</label>
+              <label><input type="radio" name="optradio">Before</label>
               <label><input type="radio" name="optradio">After</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Year">
+              <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Year">
             </div>
           </div>
-          <button type="submit" class="btn btn-default">Filter</button>
+          <div class="form-group">
+            <label>Genre</label>
+            <div class="radio">
+              <label><input type="radio" name="genre">Crime</label>
+              <label><input type="radio" name="genre">Western</label>
+              <label><input type="radio" name="genre">Drama</label>
+              <label><input type="radio" name="genre">Action</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Summary</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter keywords">
+          </div>
+          <button type="submit" class="btn btn-default">Apply</button>
         </form>
         </div>
-        <div class="col-md-10 col-sm-10">
+        <div class="col-md-9 col-sm-9">
         <table class="table table-striped">
           <thead>
             <tr>
