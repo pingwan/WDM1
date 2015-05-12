@@ -6,30 +6,30 @@
         <form>
           <div class="form-group">
             <label>Title</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter keywords">
+            <input type="text" class="form-control" placeholder="Enter keywords" ng-model="titleKeywords">
           </div>
           <div class="form-group">
             <label>Year</label>
             <div class="radio">
-              <label><input type="radio" name="optradio">Before</label>
-              <label><input type="radio" name="optradio">After</label>
-              <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Year">
+              <label><input type="radio" name="yearOption" ng-model="yearOption" value="before">Before</label>
+              <label><input type="radio" name="yearOption" ng-model="yearOption" value="after">After</label>
+              <input type="number" class="form-control" ng-model="yearValue" placeholder="Year">
             </div>
           </div>
           <div class="form-group">
             <label>Genre</label>
             <div class="radio">
-              <label><input type="radio" name="genre">Crime</label>
-              <label><input type="radio" name="genre">Western</label>
-              <label><input type="radio" name="genre">Drama</label>
-              <label><input type="radio" name="genre">Action</label>
+              <label><input type="radio" name="genre" ng-model="genre" value="Crime">Crime</label>
+              <label><input type="radio" name="genre" ng-model="genre" value="Western">Western</label>
+              <label><input type="radio" name="genre" ng-model="genre" value="Drama">Drama</label>
+              <label><input type="radio" name="genre" ng-model="genre" value="Action">Action</label>
             </div>
           </div>
           <div class="form-group">
             <label>Summary</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter keywords">
+            <input type="text" class="form-control" placeholder="Enter keywords" ng-model="summaryKeywords">
           </div>
-          <button type="submit" class="btn btn-default">Apply</button>
+          <button type="submit" class="btn btn-default" ng-click="applyFilter()">Apply</button>
         </form>
         </div>
         <div class="col-md-9 col-sm-9">

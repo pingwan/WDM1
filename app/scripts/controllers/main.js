@@ -10,27 +10,44 @@
 angular.module('wdm1App')
   .controller('MainCtrl', ['$scope', '$http', 'x2js', '$log', 'queryFactory', function ($scope, $http, x2js, $log, queryFactory) {
 
-  var movieOne = {
-    title: "Harry Potter",
-    year: '2008',
-    country : 'USA',
-    genre : 'Drama',
-    director: 'Steven Spielberg',
-    actors: ['Christian den boer','Ping Wan','Roeland Oosterloo']
+  queryFactory.executeMovieQuery('//movies/movie', function(data) {
+        $scope.movies = data.movie;
+    });
+
+
+  $scope.applyFilter = function(event){
+
+    /* year filter soort van */
+
+    if($scope.yearOption === 'before'){
+      queryFactory.executeMovieQuery('//movies/movie[year <' + $scope.yearValue  +']', function(data) {
+        $scope.movies = data.movie;
+      });
+    }
+    
+    if($scope.yearOption === 'after'){
+      queryFactory.executeMovieQuery('//movies/movie[year >' + $scope.yearValue  +']', function(data) {
+        $scope.movies = data.movie;
+      });
+    }
+
+    /*genre filtering soort van*/
+    if($scope.genre !== undefined){
+      queryFactory.executeMovieQuery('//movies/movie[genre =\"' + $scope.genre  +'\"]', function(data) {
+        $scope.movies = data.movie;
+        $scope.checkIfArray();
+      });
+    }
   }
 
-  var movieTwo = {
-    title: "Lost",
-    year: '2012',
-    country : 'Japan',
-    genre : 'Love',
-    director: 'Abba',
-    actors: ['Christian den boer','Ping Wan','Roeland Oosterloo']
+  /*
+  * deze function moet je hebben voor het geval deze resultaat maar uit 1 object bestaat,
+  * dan moet je hem ff in een array gooien ;)
+  */
+  $scope.checkIfArray = function(){
+    if(!angular.isArray($scope.movies)){
+          $scope.movies = [$scope.movies];
+        }
   }
 
-  $scope.movies  = [movieOne,movieTwo];
-
-    queryFactory.executeMovieQuery('//movies/movie/title', function(data) {
-        $log.log(data);
-    })
-  }]);
+}]);
