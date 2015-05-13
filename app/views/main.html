@@ -40,18 +40,14 @@
               <th>Year</th>
               <th>Country</th>
               <th>Genre</th>
-              <th>Director</th>
-              <th>Actors</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="movie in movies">
+            <tr ng-repeat="movie in movies" ng-click="gotoDetail(movie)">
               <td>{{movie.title}}</td>
               <td>{{movie.year}}</td>
               <td>{{movie.country}}</td>
               <td>{{movie.genre}}</td>
-              <td>{{movie.director}}</td>
-              <td><span ng-repeat="actor in movie.actors">{{actor}}&nbsp;&nbsp;&nbsp;</span></td>
             </tr>
           </tbody>
         </table>
