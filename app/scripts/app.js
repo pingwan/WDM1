@@ -12,7 +12,7 @@ angular
   .module('wdm1App', [
     'ngRoute',
     'xml',
-    'wdm1App.factory.query'
+    'wdm1App.factory.query',
   ])
   .config(function ($routeProvider) {
     $routeProvider

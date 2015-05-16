@@ -9,25 +9,27 @@
  */
 angular.module('wdm1App')
     .controller('MainCtrl', ['$scope', '$http', 'x2js', '$log', 'queryFactory', '$location', function ($scope, $http, x2js, $log, queryFactory, $location) {
+        $scope.movies = [];
         //fill initial list
         queryFactory.executeMovieQuery('//movies/movie', function(data) {
             setResult(data);
         });
 
         $scope.applyFilter = function(event){
-            if($scope.titleKeywords) {
+            $scope.movies = [];
+            if($scope.titleKeywords && $scope.titleKeywords != '') {
                 queryFactory.executeMovieQuery('//movies/movie[title[contains(text(),\'' + $scope.titleKeywords  +'\')]]', function(data) {
                     setResult(data);
                 });
             }
 
-            if($scope.yearOption === 'before'){
+            if($scope.yearOption === 'before' && $scope.yearValue && $scope.yearValue != ''){
                 queryFactory.executeMovieQuery('//movies/movie[year <' + $scope.yearValue  +']', function(data) {
                     setResult(data);
                 });
             }
 
-            if($scope.yearOption === 'after'){
+            if($scope.yearOption === 'after' && $scope.yearValue && $scope.yearValue != ''){
                 queryFactory.executeMovieQuery('//movies/movie[year >' + $scope.yearValue  +']', function(data) {
                     setResult(data);
                 });
@@ -39,7 +41,7 @@ angular.module('wdm1App')
                 });
             }
 
-            if($scope.summaryKeywords !== undefined){
+            if($scope.summaryKeywords && $scope.summaryKeywords != ''){
                 queryFactory.executeMovieQuery('//movies/movie[summary[contains(text(),\'' + $scope.summaryKeywords  +'\')]]', function(data) {
                     setResult(data);
                 });
@@ -56,11 +58,33 @@ angular.module('wdm1App')
          * dan moet je hem ff in een array gooien ;)
          */
         var setResult = function(data){
-            if(!angular.isArray(data.movie)) {
-                $scope.movies = [data.movie];
+            if($scope.movies.length == 0) {
+                if(!angular.isArray(data.movie)) {
+                    $scope.movies = [data.movie];
+                }
+                else {
+                    $scope.movies = data.movie;
+                }
             }
             else {
-                $scope.movies = data.movie
+                if (!angular.isArray(data.movie)) {
+                    var arr = [[data.movie], $scope.movies];
+                }
+                else {
+                    var arr = [data.movie, $scope.movies];
+                }
+
+                $log.log(arr);
+                var res = [];
+                for(var i = 0; i < arr[0].length; i++) {
+                    for(var j = 0; j < arr[1].length; j++) {
+                        if(arr[0][i].title == arr[1][j].title) {
+                            res.push(arr[0][i]);
+                        }
+                    }
+                }
+
+                $scope.movies = res;
             }
         }
 
