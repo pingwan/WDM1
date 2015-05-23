@@ -69,7 +69,7 @@ function getScore($filename, $instrument) {
 		{$doc//work}
 		{$doc//identification}
 		{$doc//defaults}
-		<part-list>{$doc//part-list/score-part[score-instrument/instrument-name="Voice"]}</part-list>
+		<part-list>{$doc//part-list/score-part[score-instrument/instrument-name="'.$instrument.'"]}</part-list>
 		{$part}
 	    </score-partwise>';
 	$res = query($query);
