@@ -9,25 +9,8 @@
             <input type="text" class="form-control" placeholder="Enter keywords" ng-model="titleKeywords">
           </div>
           <div class="form-group">
-            <label>Year</label>
-            <div class="radio">
-              <label><input type="radio" name="yearOption" ng-model="yearOption" value="before">Before</label>
-              <label><input type="radio" name="yearOption" ng-model="yearOption" value="after">After</label>
-              <input type="number" class="form-control" ng-model="yearValue" placeholder="Year">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Genre</label>
-            <div class="radio">
-              <label><input type="radio" name="genre" ng-model="genre" value="Crime">Crime</label>
-              <label><input type="radio" name="genre" ng-model="genre" value="Western">Western</label>
-              <label><input type="radio" name="genre" ng-model="genre" value="Drama">Drama</label>
-              <label><input type="radio" name="genre" ng-model="genre" value="Action">Action</label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Summary</label>
-            <input type="text" class="form-control" placeholder="Enter keywords" ng-model="summaryKeywords">
+            <label>Componist</label>
+            <input type="text" class="form-control" placeholder="Enter keywords" ng-model="componistKeywords">
           </div>
           <button type="submit" class="btn btn-default" ng-click="applyFilter()">Apply</button>
         </form>
@@ -37,17 +20,18 @@
           <thead>
             <tr>
               <th>Title</th>
-              <th>Year</th>
-              <th>Country</th>
-              <th>Genre</th>
+              <th>Compser</th>
+              <th>Get score for</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="movie in movies" ng-click="gotoDetail(movie)">
-              <td>{{movie.title}}</td>
-              <td>{{movie.year}}</td>
-              <td>{{movie.country}}</td>
-              <td>{{movie.genre}}</td>
+            <tr ng-repeat="song in songs" ng-click="gotoDetail(movie)">
+              <td>{{song.title}}</td>
+              <td>{{song.composer}}</td>
+              <td>
+                <p ng-repeat="instrument in song.instuments" ><a ng-href="http://localhost?method=getScore&file={{song.file}}&instrument={{instrument.name}}" title="download score for {{instrument.name}}">{{instrument.name}}</a></p>
+
+              </td>
             </tr>
           </tbody>
         </table>
